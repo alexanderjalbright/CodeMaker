@@ -24,17 +24,17 @@ namespace CodeMaker
                 {
                     case ConsoleKey.M:
                         Method newMethod = MakeMethod();
-                        newMethod.PrintItself();
+                        Console.WriteLine(newMethod.ConcatedString());
                         myProgram[selectClass(myProgram)].Methods.Add(newMethod);
                         break;
                     case ConsoleKey.P:
                         Property newProperty = MakeProperty();
-                        newProperty.PrintItself();
+                        Console.WriteLine(newProperty.ConcatedString());
                         myProgram[selectClass(myProgram)].AddProperty(newProperty);
                         break;
                     case ConsoleKey.C:
                         Class newClass = MakeClass();
-                        newClass.PrintItself();
+                        Console.WriteLine(newClass.ConcatedString());
                         myProgram.Add(newClass);
                         break;
                     case ConsoleKey.A:
@@ -152,8 +152,41 @@ namespace CodeMaker
         {
             foreach (Class classy in myProgram)
             {
-                Console.WriteLine(classy);
+                Console.WriteLine(classy.ConcatedString());
+                Console.WriteLine("{");
+                foreach (Property property in classy.Properties)
+                {
+                    Console.WriteLine(Indentation(1) +property.ConcatedString());
+                    Console.WriteLine();
+                }
+
+                foreach (Method method in classy.Methods)
+                {
+                    Console.WriteLine(Indentation(1) + method.ConcatedString());
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine("}\n");
             }
+
+            Pause();
+        }
+
+        static void Pause()
+        {
+            Console.WriteLine("\nPress any key to continue");
+            Console.ReadKey();
+        }
+
+        static string Indentation(int howManyTabs)
+        {
+            string indent = "";
+            for (int i = 0; i < howManyTabs; i++)
+            {
+                indent += "    ";
+            }
+
+            return indent;
         }
     }
 

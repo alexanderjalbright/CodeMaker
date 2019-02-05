@@ -6,10 +6,10 @@ namespace CodeMaker
 {
     public class Class
     {
-        public Class(string visibility, string name)
+        public Class(string visibility, string output string name)
         {
             Visibility = visibility;
-            Output = "class";
+            Output = output;
             Name = name;
             Properties = new List<Property>();
             Methods = new List<Method>();
@@ -27,9 +27,9 @@ namespace CodeMaker
             Properties.Add(newProperty);
         }
 
-        public virtual void PrintItself()
+        public virtual string ConcatedString()
         {
-            Console.WriteLine(Visibility + " " + Output + " " + Name + "()");
+            return Visibility + " class " + Name + "()";
         }
     }
 }

@@ -6,7 +6,7 @@ namespace CodeMaker
 {
     public class Property : Class
     {
-        public Property(string visibility, string type, string name, string getsecurity, string get, string setsecurity, string set) : base(visibility, name)
+        public Property(string visibility, string type, string name, string getsecurity, string get, string setsecurity, string set) : base(visibility, type, name)
         {
             if (get.Equals("yes"))
             {
@@ -22,16 +22,17 @@ namespace CodeMaker
             }
             else
                 SetSecurity = "";
+                        
         }
-
+        
         public string Get { get; private set; }
         public string GetSecurity { get; private set; }
         public string Set { get; private set; }
         public string SetSecurity { get; private set; }
 
-        public override void PrintItself()
+        public override string ConcatedString()
         {
-            Console.WriteLine(Visibility + " " + Output + " " + Name + "{ " + GetSecurity + " " + Get + " " + SetSecurity + " " + Set + " }");
+            return Visibility + " " + Output + " " + Name + "{ " + GetSecurity + " " + Get + " " + SetSecurity + " " + Set + " }";
         }
     }
 }
